@@ -1,0 +1,137 @@
+<% include ./partials/header.ejs%>
+
+<div class="home-navbar">
+  <div class="logo">
+    <img src="../images/logo/logo.png" alt="Logo" />
+  </div>
+  <div class="nav-options">
+    <div class="explore">
+      <a href="/home">Home</a>
+    </div>
+    <div class="explore">
+      <a href="/explore">Explore</a>
+    </div>
+  </div>
+  <div class="searchbar">
+    <form action="/search" method="post">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search for easy dinner, fashion, etc."
+      />
+    </form>
+  </div>
+  <div class="profile" onclick="window.location.href='/profile'">
+    <% if (user.image) { %>
+    <img src="../images/logo/<%= user.image %>" alt="User Image" />
+    <% } else { %>
+    <img
+      src="https://imgs.search.brave.com/mDztPWayQWWrIPAy2Hm_FNfDjDVgayj73RTnUIZ15L0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc"
+      alt="Default Logo"
+    />
+    <% } %>
+  </div>
+  <div class="others-logo">
+    <p>?</p>
+  </div>
+  <div class="others-drawer">
+    <a href="/profile">Your Profile</a>
+    <a href="/edit-profile">Edit Profile</a>
+    <a href="/logout">Logout</a>
+  </div>
+</div>
+<div class="profile-container">
+  <div class="profile" onclick="window.location.href='/profile'">
+    <img
+      src="<%= false ? '/images/uploads/' + user.image :
+    'https://imgs.search.brave.com/mDztPWayQWWrIPAy2Hm_FNfDjDVgayj73RTnUIZ15L0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc'
+    %>"
+      alt="Profile Pic"
+    />
+  </div>
+  <div class="username">username</div>
+  <div class="email">test@test</div>
+  <div class="create-post">
+    <a href="/create-post">Create post</a>
+  </div>
+  <div class="post-container">
+    <div class="uploads">
+      <% if (user.posts.length > 0) { %>
+      <a href="/uploads">
+        <img
+          src="/images/uploads/<%= user.posts[0].image %>"
+          alt="User Image"
+        />
+      </a>
+      <% } else { %>
+      <a href="#">
+        <img
+          src="https://imgs.search.brave.com/DzOyhFO0fjZ-OnEOqCVIWnV6qHWY_T43bB-bfgHRUFk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA0Lzk5LzkzLzMx/LzM2MF9GXzQ5OTkz/MzExN19aQVVCZnYz/UDFIRU9zWkRybmti/TkN0NGpjM0FvZEFy/bC5qcGc"
+          alt="Default Logo"
+        />
+      </a>
+      <% } %>
+
+      <p>Uploaded Pins</p>
+      <p><%= user.posts.length %> Pins</p>
+    </div>
+
+    <div class="saved">
+      <% if (user.savedPosts.length > 0) { %>
+      <a href="/uploads">
+        <img
+          src="../images/logo/<%= user.savedPosts[0].image %>"
+          alt="User Image"
+        />
+        <% } else { %>
+        <a href=""></a>
+        <img
+          src="https://imgs.search.brave.com/DzOyhFO0fjZ-OnEOqCVIWnV6qHWY_T43bB-bfgHRUFk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA0Lzk5LzkzLzMx/LzM2MF9GXzQ5OTkz/MzExN19aQVVCZnYz/UDFIRU9zWkRybmti/TkN0NGpjM0FvZEFy/bC5qcGc"
+          alt="Default Logo"
+        />
+        <% } %>
+      </a>
+      <p>Saved Pins</p>
+      <p><%= user.savedPosts.length %> Pins</p>
+    </div>
+    <div class="favorite">
+      <% if (user.favoritePosts.length > 0) { %>
+      <a href="/uploads">
+        <img
+          src="../images/logo/<%= user.favoritePosts[0].image %>"
+          alt="User Image"
+        />
+        <% } else { %>
+        <a href=""></a>
+        <img
+          src="https://imgs.search.brave.com/DzOyhFO0fjZ-OnEOqCVIWnV6qHWY_T43bB-bfgHRUFk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA0Lzk5LzkzLzMx/LzM2MF9GXzQ5OTkz/MzExN19aQVVCZnYz/UDFIRU9zWkRybmti/TkN0NGpjM0FvZEFy/bC5qcGc"
+          alt="Default Logo"
+        />
+        <% } %>
+      </a>
+      <p>Favorite Pins</p>
+      <p><%= user.favoritePosts.length %> Pins</p>
+    </div>
+    <div class="liked">
+      <% if (user.likedPosts.length > 0) { %>
+      <a href="/uploads">
+        <img
+          src="../images/logo/<%= user.likedPosts[0].image %>"
+          alt="User Image"
+        />
+        <% } else { %>
+        <a href=""></a>
+        <img
+          src="https://imgs.search.brave.com/DzOyhFO0fjZ-OnEOqCVIWnV6qHWY_T43bB-bfgHRUFk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA0Lzk5LzkzLzMx/LzM2MF9GXzQ5OTkz/MzExN19aQVVCZnYz/UDFIRU9zWkRybmti/TkN0NGpjM0FvZEFy/bC5qcGc"
+          alt="Default Logo"
+        />
+        <% } %>
+      </a>
+      <p>Liked Pins</p>
+      <p><%= user.likedPosts.length %> Pins</p>
+    </div>
+  </div>
+
+  <script src="/javascripts/index-fun.js"></script>
+  <% include ./partials/footer.ejs%>
+</div>

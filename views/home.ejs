@@ -1,0 +1,75 @@
+<% include ./partials/header.ejs%>
+
+<div class="home-navbar">
+  <div class="logo">
+    <img src="../images/logo/logo.png" alt="Logo" />
+  </div>
+  <div class="explore">
+    <a href="/explore">Explore</a>
+  </div>
+  <div class="searchbar">
+    <form action="/search" method="post">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search for easy dinner, fashion, etc."
+      />
+    </form>
+  </div>
+  <div class="profile" onclick="window.location.href='/profile'">
+    <% if (user.image) { %>
+    <img
+      src="../images/logo/<%= user.image %>"
+      alt="User Image"
+      loading="lazy"
+    />
+    <% } else { %>
+    <img
+      src="https://imgs.search.brave.com/mDztPWayQWWrIPAy2Hm_FNfDjDVgayj73RTnUIZ15L0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc"
+      alt="Default Logo"
+      loading="lazy"
+    />
+    <% } %>
+  </div>
+  <div class="others-logo">
+    <p>?</p>
+  </div>
+  <div class="others-drawer">
+    <a href="/profile">Your Profile</a>
+    <a href="/edit-profile">Edit Profile</a>
+    <a href="/logout">Logout</a>
+  </div>
+</div>
+<div class="container">
+  <div class="cards-containers">
+    <% posts.forEach(post => { %>
+    <div class="card">
+      <img
+        src="/images/uploads/<%= post.image %>"
+        alt="Post Image"
+        loading="lazy"
+      />
+      <div class="img-options">
+        <a href="javascript:void(0);">...</a>
+        <div class="img-options-drawer">
+          <form action="/save" id="save">
+            <input type="text" value="" hidden />
+            <button type="save">Save</button>
+          </form>
+          <form action="/download" id="download">
+            <input type="text" value="" hidden />
+            <button type="submit">Download</button>
+          </form>
+          <form action="/report" id="report">
+            <input type="text" value="" hidden />
+            <button type="submit">Report</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<script src="/javascripts/index-fun.js"></script>
+<% include ./partials/footer.ejs%>

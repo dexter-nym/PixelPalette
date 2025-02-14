@@ -1,0 +1,94 @@
+<% include ./partials/header.ejs%>
+
+<div class="home-navbar">
+  <div class="logo">
+    <img src="../images/logo/logo.png" alt="Logo" />
+  </div>
+  <div class="nav-options">
+    <div class="explore">
+      <a href="/home">Home</a>
+    </div>
+    <div class="explore">
+      <a href="/explore">Explore</a>
+    </div>
+  </div>
+  <div class="searchbar">
+    <form action="/search" method="post">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search for easy dinner, fashion, etc."
+      />
+    </form>
+  </div>
+  <div class="profile" onclick="window.location.href='/profile'">
+    <img
+      src="<%= false ? '/images/uploads/' + user.image :
+    'https://imgs.search.brave.com/mDztPWayQWWrIPAy2Hm_FNfDjDVgayj73RTnUIZ15L0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc'
+    %>"
+      alt="Profile Pic"
+    />
+  </div>
+  <div class="others-logo">
+    <p>?</p>
+  </div>
+  <div class="others-drawer">
+    <a href="/profile">Your Profile</a>
+    <a href="/edit-profile">Edit Profile</a>
+    <a href="/logout">Logout</a>
+  </div>
+</div>
+<div class="create-post">
+  <form action="/create-post" method="post" enctype="multipart/form-data">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="Enter your title"
+      required
+    />
+
+    <label for="description">Description</label>
+    <textarea
+      type="text"
+      id="description"
+      name="description"
+      placeholder="Enter your description"
+      required
+    ></textarea>
+
+    <label for="tag">Tags</label>
+    <select name="tag" id="tag" placeholder="Select a tag" required>
+      <option value="all" selected disabled>All</option>
+      <option value="nature">Nature</option>
+      <option value="animals">Animals</option>
+      <option value="people">People</option>
+      <option value="food">Food</option>
+      <option value="sports">Sports</option>
+      <option value="cars">Cars</option>
+      <option value="bikes">Bikes</option>
+      <option value="fashion">Fashion</option>
+    </select>
+
+    <label for="orientation">Orientation</label>
+    <select
+      name="orientation"
+      id="orientation"
+      placeholder="Orientation"
+      required
+    >
+      <option value="square" selected>Square</option>
+      <option value="portrait">Portrait</option>
+      <option value="landscape">Landscape</option>
+    </select>
+
+    <label for="image">Pin Image</label>
+    <input type="file" id="image" name="image" accept="image/*" required />
+
+    <button type="submit">Make Pin</button>
+  </form>
+</div>
+
+<script src="/javascripts/index-fun.js"></script>
+<% include ./partials/footer.ejs%>

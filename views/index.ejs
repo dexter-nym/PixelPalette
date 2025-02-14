@@ -1,0 +1,106 @@
+<% include ./partials/header.ejs%>
+
+<div class="navbar">
+  <div class="logo">
+    <img src="../images/logo/logo.png" alt="Logo" />
+  </div>
+  <div class="searchbar">
+    <form action="/search" method="post">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search for easy dinner, fashion, etc."
+      />
+    </form>
+  </div>
+  <div class="login" id="login-trigger">Login</div>
+  <div class="signup" id="signup-trigger">Sign up</div>
+  <div class="others-logo">
+    <p>?</p>
+  </div>
+  <div class="others-drawer">
+    <a href="#">About PixelPalette</a>
+    <a href="#">See terms & policy</a>
+    <a href="#">Stop request to log in</a>
+  </div>
+</div>
+<div class="container">
+  <div class="cards-containers">
+    <% posts.forEach(post => { %>
+    <div class="card">
+      <img src="/images/uploads/<%= post.image %>" alt="Post Image" />
+      <div class="img-options">
+        <a href="javascript:void(0);">...</a>
+        <div class="img-options-drawer">
+          <form action="/download" id="download">
+            <input type="text" value="" hidden />
+            <button type="submit">Download</button>
+          </form>
+          <form action="/report" id="report">
+            <input type="text" value="" hidden />
+            <button type="submit">Report</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+  <!-- Auth Popups -->
+  <div class="auth-container">
+    <!-- Login Popup -->
+    <div class="popup" id="loginPopup">
+      <div class="form-container">
+        <div class="logo">
+          <img src="../images/logo/logo-icon.png" alt="Logo" />
+        </div>
+        <h2>Log in</h2>
+        <form action="/login" method="post">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+
+          <a href="#">Forgot your password?</a>
+
+          <button type="submit">Log in</button>
+
+          <p>
+            By continuing, you agree to our <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+    <!-- Signup Popup -->
+    <div class="popup" id="signupPopup">
+      <div class="form-container">
+        <div class="logo">
+          <img src="../images/logo/logo-icon.png" alt="Logo" />
+        </div>
+        <h2>Sign up</h2>
+        <form action="/signup" method="post">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Create a Password</label>
+          <input type="password" id="password" name="password" required />
+
+          <button type="submit">Sign up</button>
+
+          <p>
+            By continuing, you agree to our <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/javascripts/index-fun.js"></script>
+<% include ./partials/footer.ejs%>

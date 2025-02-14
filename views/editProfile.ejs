@@ -1,0 +1,77 @@
+<% include ./partials/header.ejs%>
+
+<div class="home-navbar">
+  <div class="logo">
+    <img src="../images/logo/logo.png" alt="Logo" />
+  </div>
+  <div class="nav-options">
+    <div class="explore">
+      <a href="/home">Home</a>
+    </div>
+    <div class="explore">
+      <a href="/explore">Explore</a>
+    </div>
+  </div>
+  <div class="searchbar">
+    <form action="/search" method="post">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search for easy dinner, fashion, etc."
+      />
+    </form>
+  </div>
+  <div class="profile" onclick="window.location.href='/profile'">
+    <img
+      src="<%= false ? '/images/uploads/' + user.image :
+    'https://imgs.search.brave.com/mDztPWayQWWrIPAy2Hm_FNfDjDVgayj73RTnUIZ15L0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc'
+    %>"
+      alt="Profile Pic"
+    />
+  </div>
+  <div class="others-logo">
+    <p>?</p>
+  </div>
+  <div class="others-drawer">
+    <a href="/profile">Your Profile</a>
+    <a href="/edit-profile">Edit Profile</a>
+    <a href="/logout">Logout</a>
+  </div>
+</div>
+<div class="edit-profile">
+  <form action="/edit-profile" method="post" enctype="multipart/form-data">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Enter your username"
+      required
+    />
+
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Enter your email"
+      required
+    />
+
+    <label for="password">New Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Enter a new password"
+    />
+
+    <label for="image">Profile Image</label>
+    <input type="file" id="image" name="image" accept="image/*" />
+
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+
+<script src="/javascripts/index-fun.js"></script>
+<% include ./partials/footer.ejs%>
